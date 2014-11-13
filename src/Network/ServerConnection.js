@@ -1,10 +1,12 @@
 var events = require('events');
 var net = require('net');
 
+var Response = require('./AMCP/Response');
+
 var ServerConnection = function() {
     var socket,
         isConnected = false,
-        eventEmitter = new events.EventEmitter();
+        commandsQueue = [];
 
     var connect = function(hostAddress, port) {
         socket = net.connect({
@@ -18,10 +20,15 @@ var ServerConnection = function() {
             console.log('Connected to: ' + hostAddress + ':' + port);
         });
 
-        socket.on('data', function(data) {
+        socket.on('data', function(dataChunk) {
             console.log('Receiving data...');
 
-            console.log(data.toString());
+            var response = new Response();
+            response.parseReceivedData(dataChunk);
+
+            console.log(response.toString());
+
+            commandsQueue.shift();
         });
 
         socket.on('error', function(error) {
@@ -40,12 +47,14 @@ var ServerConnection = function() {
     };
 
     var sendCommand = function(command) {
-        console.log('Sending command: ' + command)
+        commandsQueue.push(command);
+
+        console.log('Sending command: ' + commandsQueue[0]);
 
         socket.write (
-            command + '\r\n',
+            commandsQueue[0] + '\r\n',
             function() {
-                console.log('Command ' + command + ' has been sent.');
+                console.log('Command ' + commandsQueue[0] + ' has been sent.');
             }
         );
     };
