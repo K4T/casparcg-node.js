@@ -38,10 +38,12 @@ var ServerConnection = function() {
     };
 
     var sendCommand = function(command) {
+        console.log('Sending command: ' + command)
+
         socket.write (
             command + '\r\n',
             function() {
-                console.log('Command sent.');
+                console.log('Command ' + command + ' has been sent.');
             }
         );
     };
