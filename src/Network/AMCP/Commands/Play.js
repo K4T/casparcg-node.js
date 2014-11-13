@@ -1,5 +1,5 @@
-var Play = function(videoChannel, layer, clip) {
-    return 'PLAY ' + videoChannel + '-' + layer + ' "' + clip + '"';
+var Play = function(channel, layer, clip) {
+    return 'PLAY ' + channel + '-' + layer + ' \"' + clip + '\"';
 };
 
 module.exports = Play;

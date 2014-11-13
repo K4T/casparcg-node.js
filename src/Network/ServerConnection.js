@@ -19,6 +19,8 @@ var ServerConnection = function() {
         });
 
         socket.on('data', function(data) {
+            console.log('Receiving data...');
+
             console.log(data.toString());
         });
 
