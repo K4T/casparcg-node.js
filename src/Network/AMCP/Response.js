@@ -2,7 +2,7 @@ var Response = function() {
     var response,
         header,
         code,
-        message;
+        body;
 
     var parseReceivedData = function(data) {
         response = data.toString();
@@ -13,7 +13,7 @@ var Response = function() {
         code = header.split(' ')[0];
 
         lines.shift();
-        message = lines.join('\r\n');
+        body = lines.join('\r\n');
     };
 
     var getHeader = function() {
@@ -24,8 +24,12 @@ var Response = function() {
         return code;
     };
 
-    var getMessage = function() {
-        return message;
+    var getBody = function() {
+        return body.trim();
+    };
+
+    var getResponse = function() {
+        return response.trim();
     };
 
     var getResponseLength = function() {
@@ -33,14 +37,15 @@ var Response = function() {
     };
 
     var toString = function() {
-        return 'Header: ' + header + '\r\nCode: ' + code + '\r\nMessage: ' + message + '\r\nResponse length: ' + getResponseLength() + 'b';
+        return 'Header: ' + getHeader() + '\r\nCode: ' + getCode() + '\r\nBody: ' + getBody() + '\r\nResponse length: ' + getResponseLength() + 'b';
     };
 
     return {
         parseReceivedData: parseReceivedData,
         getHeader: getHeader,
         getCode: getCode,
-        getMessage: getMessage,
+        getBody: getBody,
+        getResponse: getResponse,
         getResponseLength: getResponseLength,
         toString: toString
     }
