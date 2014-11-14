@@ -1,11 +1,12 @@
-var events = require('events');
 var net = require('net');
 
 var Response = require('./AMCP/Response');
 
 var ServerConnection = function() {
     var socket,
+        receivedData = '',
         isConnected = false,
+        canSendCommand = true,
         commandsQueue = [];
 
     var connect = function(hostAddress, port) {
@@ -20,15 +21,8 @@ var ServerConnection = function() {
             console.log('Connected to: ' + hostAddress + ':' + port);
         });
 
-        socket.on('data', function(dataChunk) {
-            console.log('Receiving data...');
-
-            var response = new Response();
-            response.parseReceivedData(dataChunk);
-
-            console.log(response.toString());
-
-            commandsQueue.shift();
+        socket.on('data', function(chunk) {
+            _processChunk(chunk);
         });
 
         socket.on('error', function(error) {
@@ -38,36 +32,69 @@ var ServerConnection = function() {
         socket.on('end', function() {
             isConnected = false;
 
-            console.log('Server connection ended.');
+            console.log('Server connection has been ended.');
         });
     };
 
     var disconnect = function() {
-        socket.end();
+        if (isConnected) {
+            socket.end();
+        }
     };
 
     var sendCommand = function(command) {
         commandsQueue.push(command);
-
-        console.log('Sending command: ' + commandsQueue[0]);
-
-        socket.write (
-            commandsQueue[0] + '\r\n',
-            function() {
-                console.log('Command ' + commandsQueue[0] + ' has been sent.');
-            }
-        );
+        _sendCommandFromQueue(0);
     };
 
-    var getEventEmitter = function() {
-        return eventEmitter;
+    var _sendCommandFromQueue = function() {
+        if (!commandsQueue.length) {
+            return;
+        }
+
+        if (canSendCommand) {
+            console.log('Sending command: ' + commandsQueue[0]);
+
+            socket.write(
+                commandsQueue[0] + '\r\n',
+                function() {
+                    console.log('Command ' + commandsQueue[0] + ' has been sent.');
+                    commandsQueue.shift();
+                }
+            );
+
+            canSendCommand = false;
+        }
+    };
+
+    var _processChunk = function(chunk) {
+        var shouldIWaitForMoreData = function(receivedData) {
+                return receivedData.substr(-2) != '\r\n';
+            },
+            response = new Response();
+
+        console.log('Receiving data chunk...');
+
+        receivedData += chunk;
+
+        if (shouldIWaitForMoreData(receivedData)) {
+            return;
+        }
+
+        response.parseReceivedData(receivedData);
+
+        console.log(response.toString());
+
+        canSendCommand = true;
+        receivedData = '';
+
+        _sendCommandFromQueue();
     };
 
     return {
         connect: connect,
         disconnect: disconnect,
-        sendCommand: sendCommand,
-        getEventEmitter: getEventEmitter
+        sendCommand: sendCommand
     }
 };
 
