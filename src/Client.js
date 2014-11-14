@@ -11,7 +11,7 @@ var Client = function() {
         sc.events().on(
             'response',
             function(response) {
-
+                console.log('Server reply: ' + response.getHeader());
             }
         );
 
