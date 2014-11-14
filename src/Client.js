@@ -8,16 +8,25 @@ var Client = function() {
         sc = new ServerConnection();
         sc.connect(hostAddress, port);
 
+        sc.events().on(
+            'response',
+            function(response) {
+
+            }
+        );
+
         setTimeout(
             function() {
-                sc.sendCommand(AMCPCommands.Play(1, 1, 'AMB'))
+                sc.sendCommand(AMCPCommands.Play(1, 1, 'AMB'));
+                sc.sendCommand(AMCPCommands.Info(1, 1));
+                disconnect();
             },
             1000
         );
     };
 
     var disconnect = function() {
-        sc.sendCommand(AMCPCommands.Bye())
+        sc.sendCommand(AMCPCommands.Bye());
     };
 
     return {
