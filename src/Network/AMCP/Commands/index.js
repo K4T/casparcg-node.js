@@ -16,6 +16,7 @@ module.exports = {
     //Quary Commands
     Cinf: require('./Cinf'),
     Cls: require('./Cls'),
+    Tls: require('./Tls'),
     Version: require('./Version'),
     Info: require('./Info'),
     Diag: require('./Diag'),
