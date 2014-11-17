@@ -14,6 +14,7 @@ module.exports = {
     ChannelGrid: require('./ChannelGrid'),
 
     //Quary Commands
+    Cinf: require('./Cinf'),
     Cls: require('./Cls'),
     Version: require('./Version'),
     Info: require('./Info'),
