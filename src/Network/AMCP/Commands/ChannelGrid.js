@@ -1,6 +1,6 @@
 var ChannelGrid = function() {
 
-    var command = 'CHANNEL_GRID ';
+    var command = 'CHANNEL_GRID';
 
     return command;
 };
