@@ -9,6 +9,7 @@ module.exports = {
     ChannelGrid: require('./ChannelGrid'),
 
     //Quary Commands
+    Cls: require('./Cls'),
     Info: require('./Info'),
     Bye: require('./Bye')
 };
