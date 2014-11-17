@@ -17,5 +17,6 @@ module.exports = {
     Cls: require('./Cls'),
     Version: require('./Version'),
     Info: require('./Info'),
+    Diag: require('./Diag'),
     Bye: require('./Bye')
 };
