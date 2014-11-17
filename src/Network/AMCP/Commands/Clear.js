@@ -3,7 +3,10 @@ var Clear = function(channel, layer) {
     var command = 'CLEAR ';
 
     command += channel;
-    command += '-'+(layer || 0);
+
+    if (typeof layer !== 'undefined') {
+        command += '-'+layer
+    }
 
     return command;
 };
