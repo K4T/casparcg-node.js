@@ -1,3 +1,8 @@
+/*
+ * AMCP Protocol:
+ * http://casparcg.com/wiki/CasparCG_2.0_AMCP_Protocol
+ */
+
 module.exports = {
     //Basic commands
     Play: require('./Play'),
@@ -10,6 +15,7 @@ module.exports = {
 
     //Quary Commands
     Cls: require('./Cls'),
+    Version: require('./Version'),
     Info: require('./Info'),
     Bye: require('./Bye')
 };
