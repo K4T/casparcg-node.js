@@ -9,6 +9,7 @@ module.exports = {
     Pause: require('./Pause'),
     Clear: require('./Clear'),
     Stop: require('./Stop'),
+    Print: require('./Print'),
 
     //Mixer Commands
     ChannelGrid: require('./ChannelGrid'),
