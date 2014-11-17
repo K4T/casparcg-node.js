@@ -8,7 +8,7 @@ var Client = function() {
         sc = new ServerConnection();
         sc.connect(hostAddress, port);
 
-        sc.events().on(
+        sc.on(
             'response',
             function(response) {
                 console.log('Server reply: ' + response.getHeader());

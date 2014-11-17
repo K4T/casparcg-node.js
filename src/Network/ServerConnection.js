@@ -1,5 +1,5 @@
 var net = require('net'),
-    EventEmitter = require('events').EventEmitter;
+    events = require('events');
 
 var Response = require('./AMCP/Response');
 
@@ -9,7 +9,7 @@ var ServerConnection = function() {
         isConnected = false,
         canSendCommand = true,
         commandsQueue = [],
-        events = new EventEmitter();
+        eventEmitter = new events.EventEmitter();
 
     var connect = function(hostAddress, port) {
         socket = net.connect({
@@ -42,6 +42,10 @@ var ServerConnection = function() {
         if (isConnected) {
             socket.end();
         }
+    };
+
+    var on = function(type, listener) {
+        eventEmitter.on(type, listener);
     };
 
     var sendCommand = function(command) {
@@ -83,7 +87,7 @@ var ServerConnection = function() {
 
         response.parseReceivedData(receivedData);
 
-        events.emit('response', response);
+        eventEmitter.emit('response', response);
 
         canSendCommand = true;
         receivedData = '';
@@ -95,10 +99,7 @@ var ServerConnection = function() {
         connect: connect,
         disconnect: disconnect,
         sendCommand: sendCommand,
-
-        events: function() {
-            return events;
-        }
+        on : on
     }
 };
 
