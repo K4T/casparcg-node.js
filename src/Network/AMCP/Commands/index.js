@@ -18,5 +18,6 @@ module.exports = {
     Version: require('./Version'),
     Info: require('./Info'),
     Diag: require('./Diag'),
-    Bye: require('./Bye')
+    Bye: require('./Bye'),
+    Kill: require('./Kill')
 };
