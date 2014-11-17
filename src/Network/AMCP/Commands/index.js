@@ -19,5 +19,6 @@ module.exports = {
     Info: require('./Info'),
     Diag: require('./Diag'),
     Bye: require('./Bye'),
-    Kill: require('./Kill')
+    Kill: require('./Kill'),
+    Restart: require('./Restart')
 };
