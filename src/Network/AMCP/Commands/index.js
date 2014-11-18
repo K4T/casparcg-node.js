@@ -17,6 +17,7 @@ module.exports = {
     //Thumbnail Commands
     ThumbnailList: require('./ThumbnailList'),
     ThumbnailRetrieve: require('./ThumbnailRetrieve'),
+    ThumbnailGenerate: require('./ThumbnailGenerate'),
 
     //Quary Commands
     Cinf: require('./Cinf'),
