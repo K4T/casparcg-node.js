@@ -34,6 +34,7 @@ module.exports = {
     CGStop: require('./CGStop'),
     CGNext: require('./CGNext'),
     CGUpdate: require('./CGUpdate'),
+    CGInvoke: require('./CGInvoke'),
 
     //Quary Commands
     Cinf: require('./Cinf'),
