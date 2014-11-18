@@ -13,6 +13,7 @@ module.exports = {
 
     //Data Commands
     DataStore: require('./DataStore'),
+    DataRetrieve: require('./DataRetrieve'),
 
     //Mixer Commands
     ChannelGrid: require('./ChannelGrid'),
