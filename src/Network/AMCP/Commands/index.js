@@ -26,6 +26,9 @@ module.exports = {
     ThumbnailGenerate: require('./ThumbnailGenerate'),
     ThumbnailGenerateAll: require('./ThumbnailGenerateAll'),
 
+    //Template Graphics Commands
+    CGRemove: require('./CGRemove'),
+
     //Quary Commands
     Cinf: require('./Cinf'),
     Cls: require('./Cls'),
