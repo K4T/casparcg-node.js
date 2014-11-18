@@ -3,7 +3,7 @@ var net = require('net'),
 
 var Response = require('./AMCP/Response');
 
-var Client = function() {
+var Client = function(hostAddress, port) {
     var socket,
         receivedData = '',
         isConnected = false,
@@ -11,7 +11,7 @@ var Client = function() {
         commandsQueue = [],
         eventEmitter = new events.EventEmitter();
 
-    var connect = function(hostAddress, port) {
+    var connect = function() {
         socket = net.connect({
             host: hostAddress,
             port: port
@@ -19,8 +19,13 @@ var Client = function() {
 
         socket.on('connect', function() {
             isConnected = true;
-
-            console.log('Connected to: ' + hostAddress + ':' + port);
+            eventEmitter.emit(
+                'connect',
+                {
+                    hostAddress: hostAddress,
+                    port: port
+                }
+            );
         });
 
         socket.on('data', function(chunk) {
@@ -28,13 +33,12 @@ var Client = function() {
         });
 
         socket.on('error', function(error) {
-            console.log('Server connection error: ' + error);
+            eventEmitter.emit('error', error);
         });
 
         socket.on('end', function() {
             isConnected = false;
-
-            console.log('Server connection has been ended.');
+            eventEmitter.emit('disconnect');
         });
     };
 
@@ -59,12 +63,10 @@ var Client = function() {
         }
 
         if (canSendCommand) {
-            console.log('Sending command: ' + commandsQueue[0]);
-
             socket.write(
                 commandsQueue[0] + '\r\n',
                 function() {
-                    console.log('Command ' + commandsQueue[0] + ' has been sent.');
+                    eventEmitter.emit('sent', commandsQueue[0]);
                     commandsQueue.shift();
                 }
             );
