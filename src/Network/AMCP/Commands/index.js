@@ -14,6 +14,9 @@ module.exports = {
     //Mixer Commands
     ChannelGrid: require('./ChannelGrid'),
 
+    //Thumbnail Commands
+    ThumbnailList: require('./ThumbnailList'),
+
     //Quary Commands
     Cinf: require('./Cinf'),
     Cls: require('./Cls'),
