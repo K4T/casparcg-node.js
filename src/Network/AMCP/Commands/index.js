@@ -33,6 +33,7 @@ module.exports = {
     CGPlay: require('./CGPlay'),
     CGStop: require('./CGStop'),
     CGNext: require('./CGNext'),
+    CGUpdate: require('./CGUpdate'),
 
     //Quary Commands
     Cinf: require('./Cinf'),
