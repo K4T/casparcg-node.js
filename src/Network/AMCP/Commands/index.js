@@ -31,6 +31,7 @@ module.exports = {
     CGClear: require('./CGClear'),
     CGPlay: require('./CGPlay'),
     CGStop: require('./CGStop'),
+    CGNext: require('./CGNext'),
 
     //Quary Commands
     Cinf: require('./Cinf'),
