@@ -27,6 +27,7 @@ module.exports = {
     ThumbnailGenerateAll: require('./ThumbnailGenerateAll'),
 
     //Template Graphics Commands
+    CGAdd: require('./CGAdd'),
     CGRemove: require('./CGRemove'),
     CGClear: require('./CGClear'),
     CGPlay: require('./CGPlay'),
