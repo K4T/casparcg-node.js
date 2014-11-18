@@ -28,6 +28,7 @@ module.exports = {
 
     //Template Graphics Commands
     CGRemove: require('./CGRemove'),
+    CGClear: require('./CGClear'),
 
     //Quary Commands
     Cinf: require('./Cinf'),
