@@ -15,6 +15,7 @@ module.exports = {
     DataStore: require('./DataStore'),
     DataRetrieve: require('./DataRetrieve'),
     DataList: require('./DataList'),
+    DataRemove: require('./DataRemove'),
 
     //Mixer Commands
     ChannelGrid: require('./ChannelGrid'),
