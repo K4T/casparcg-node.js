@@ -11,6 +11,9 @@ module.exports = {
     Stop: require('./Stop'),
     Print: require('./Print'),
 
+    //Data Commands
+    DataStore: require('./DataStore'),
+
     //Mixer Commands
     ChannelGrid: require('./ChannelGrid'),
 
