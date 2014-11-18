@@ -3,7 +3,7 @@ var net = require('net'),
 
 var Response = require('./AMCP/Response');
 
-var ServerConnection = function() {
+var Client = function() {
     var socket,
         receivedData = '',
         isConnected = false,
@@ -40,7 +40,7 @@ var ServerConnection = function() {
 
     var disconnect = function() {
         if (isConnected) {
-            socket.end();
+            socket.end('BYE\r\n');
         }
     };
 
@@ -103,4 +103,4 @@ var ServerConnection = function() {
     }
 };
 
-module.exports = ServerConnection;
+module.exports = Client;
