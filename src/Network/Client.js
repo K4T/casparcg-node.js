@@ -67,7 +67,6 @@ var Client = function(hostAddress, port) {
                 commandsQueue[0] + '\r\n',
                 function() {
                     eventEmitter.emit('sent', commandsQueue[0]);
-                    commandsQueue.shift();
                 }
             );
 
@@ -89,10 +88,11 @@ var Client = function(hostAddress, port) {
 
         response.parseReceivedData(receivedData);
 
-        eventEmitter.emit('response', response);
+        eventEmitter.emit('response', commandsQueue[0], response);
 
         canSendCommand = true;
         receivedData = '';
+        commandsQueue.shift();
 
         _sendCommandFromQueue();
     };
