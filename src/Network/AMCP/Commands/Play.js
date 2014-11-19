@@ -19,9 +19,9 @@ var Play = function() {
 
         case 4:
             var clip = arguments[2],
-                loadBGparams = arguments[3];
+                loadBgParams = arguments[3];
 
-                command += channel + '-' + layer + ' \"' + clip + '\" ' + loadBGparams;
+                command += channel + '-' + layer + ' \"' + clip + '\" ' + loadBgParams;
             break;
 
         default:
