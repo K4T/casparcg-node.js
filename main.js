@@ -1,5 +1,5 @@
-var Client = require('./src/Network/Client'),
-    AMCPCommands = require('./src/Network/AMCP/Commands/index');
+var Client = require('./lib/Network/Client'),
+    AMCPCommands = require('./lib/Network/AMCP/Commands/index');
 
 var client = new Client('192.168.1.104', 5250);
 
@@ -10,7 +10,6 @@ client.on(
     function(connectionInfo) {
         console.log('Connected to: ' + connectionInfo['hostAddress'] + ':' + connectionInfo['port']);
 
-        //Run playlist!
         setTimeout(
             function() {
                 client.sendCommand(AMCPCommands.Play(1, 1, 'AMB', 'SLIDE 10 LEFT'));
@@ -38,13 +37,13 @@ client.on(
 client.on(
     'sent',
     function(command) {
-        console.log('Command "' + command + '" has been sent.');
+        console.log('Command ' + command + ' has been sent.');
     }
 );
 
 client.on(
     'response',
-    function(response) {
+    function(command, response) {
         console.log('Server reply: ' + response.toString());
     }
 );
