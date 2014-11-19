@@ -5,6 +5,7 @@
 
 module.exports = {
     //Basic commands
+    LoadBg: require('./LoadBg'),
     Play: require('./Play'),
     Pause: require('./Pause'),
     Clear: require('./Clear'),
