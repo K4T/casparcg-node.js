@@ -20,6 +20,7 @@ module.exports = {
     DataRemove: require('./DataRemove'),
 
     //Mixer Commands
+    MixerMasterVolume: require('./MixerMasterVolume'),
     ChannelGrid: require('./ChannelGrid'),
 
     //Thumbnail Commands
