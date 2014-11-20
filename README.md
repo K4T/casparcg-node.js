@@ -3,7 +3,7 @@
 Simple Node.js module for communication with the CasparCG server.
 
 ## Usage Example
-```
+```javascript
 var Client = require('./lib/Network/Client'),
     AMCPCommands = require('./lib/Network/AMCP/Commands/index');
 
