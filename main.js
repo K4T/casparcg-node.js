@@ -10,13 +10,8 @@ client.on(
     function(connectionInfo) {
         console.log('Connected to: ' + connectionInfo['hostAddress'] + ':' + connectionInfo['port']);
 
-        setTimeout(
-            function() {
-                client.sendCommand(AMCPCommands.Play(1, 1, 'AMB', 'SLIDE 10 LEFT'));
-                client.sendCommand(AMCPCommands.Bye());
-            },
-            1000
-        );
+        client.sendCommand(AMCPCommands.Play(1, 1, 'AMB', 'SLIDE 10 LEFT'));
+        client.sendCommand(AMCPCommands.Bye());
     }
 );
 
