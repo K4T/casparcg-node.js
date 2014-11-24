@@ -23,7 +23,7 @@ client.on(
 );
 
 client.on(
-    'error',
+    'connectionError',
     function(error) {
         console.log('Server connection error: ' + error);
     }
